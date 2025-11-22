@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DefaultWordFrequencyTest {
 
-    private DefaultWordFrequency wordFrequency;
     private final String testWord = "testWord";
+    private DefaultWordFrequency wordFrequency;
     private int frequency = 1;
 
     @BeforeEach

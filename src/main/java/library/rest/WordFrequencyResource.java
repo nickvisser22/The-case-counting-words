@@ -66,7 +66,7 @@ public class WordFrequencyResource {
         final List<WordFrequencyDto> mostFrequentNWords = analyzer.calculateMostFrequentNWords(text, n)
                 .stream()
                 .map(wf -> new WordFrequencyDto(wf.getWord(), wf.getFrequency()))
-                .toList();;
+                .toList();
 
         return Response
                 .ok(new MostFrequentNWordsResponse(mostFrequentNWords))

@@ -10,8 +10,8 @@ public class DefaultWordFrequency implements WordFrequency {
         this.word = TextUtils.normalize(word);
 
         this.frequency = (frequency == null || frequency == 0)
-            ? 1
-            : frequency;
+                ? 1
+                : frequency;
     }
 
     @Override
@@ -24,11 +24,11 @@ public class DefaultWordFrequency implements WordFrequency {
         return this.frequency;
     }
 
-    public void incrementFrequency() {
-        this.frequency++;
-    }
-
     public void setFrequency(int frequency) {
         this.frequency = frequency;
+    }
+
+    public void incrementFrequency() {
+        this.frequency++;
     }
 }
