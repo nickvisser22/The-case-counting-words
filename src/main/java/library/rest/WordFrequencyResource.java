@@ -3,11 +3,13 @@ package library.rest;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import library.analyzers.WordFrequencyAnalyzer;
-import library.frequencies.WordFrequency;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
 import library.rest.dto.WordFrequencyDto;
 import library.rest.responses.FrequencyForWordResponse;
 import library.rest.responses.HighestFrequencyResponse;
@@ -64,7 +66,7 @@ public class WordFrequencyResource {
         final List<WordFrequencyDto> mostFrequentNWords = analyzer.calculateMostFrequentNWords(text, n)
                 .stream()
                 .map(wf -> new WordFrequencyDto(wf.getWord(), wf.getFrequency()))
-                .toList();;
+                .toList();
 
         return Response
                 .ok(new MostFrequentNWordsResponse(mostFrequentNWords))

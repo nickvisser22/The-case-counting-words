@@ -3,7 +3,8 @@ package utils;
 public final class TextUtils {
 
     // private constructor prevents creating instances
-    private TextUtils() {}
+    private TextUtils() {
+    }
 
     public static boolean isNullOrBlank(String text) {
         return text == null || text.isBlank();
