@@ -10,6 +10,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import library.analyzers.WordFrequencyAnalyzer;
+import library.frequencies.WordFrequency;
 import library.rest.dto.WordFrequencyDto;
 import library.rest.responses.FrequencyForWordResponse;
 import library.rest.responses.HighestFrequencyResponse;
@@ -65,7 +66,7 @@ public class WordFrequencyResource {
     ) {
         final List<WordFrequencyDto> mostFrequentNWords = analyzer.calculateMostFrequentNWords(text, n)
                 .stream()
-                .map(wf -> new WordFrequencyDto(wf.getWord(), wf.getFrequency()))
+                .map((WordFrequency wf) -> new WordFrequencyDto(wf.getWord(), wf.getFrequency()))
                 .toList();
 
         return Response

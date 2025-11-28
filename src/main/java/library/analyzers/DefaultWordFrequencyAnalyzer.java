@@ -9,21 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DefaultWordFrequencyAnalyzer implements WordFrequencyAnalyzer {
-    private static List<WordFrequency> mapFrequenciesToWordFrequencyList(int n, Map<String, Integer> frequencies) {
-        return frequencies
-                .entrySet() // make key value pair
-                .stream() // stream for sorting and transforming
-                .<WordFrequency>map((Map.Entry<String, Integer> e) -> new DefaultWordFrequency(e.getKey(), e.getValue())) // map values to WordFrequency
-                .sorted(
-                        // same as (a, b) -> {logic...}
-                        // sort based on frequency, then alphabetically
-                        Comparator.comparing(WordFrequency::getFrequency, Comparator.reverseOrder())
-                                .thenComparing(WordFrequency::getWord)
-                )
-                .limit(n) // limit number n from map
-                .toList();
-    }
-
     @Override
     public int calculateHighestFrequency(String text) {
         if (TextUtils.isNullOrBlank(text)) {
@@ -97,5 +82,20 @@ public class DefaultWordFrequencyAnalyzer implements WordFrequencyAnalyzer {
         }
 
         return frequencies;
+    }
+
+    private static List<WordFrequency> mapFrequenciesToWordFrequencyList(int n, Map<String, Integer> frequencies) {
+        return frequencies
+                .entrySet() // make key value pair
+                .stream() // stream for sorting and transforming
+                .<WordFrequency>map((Map.Entry<String, Integer> e) -> new DefaultWordFrequency(e.getKey(), e.getValue())) // map values to WordFrequency
+                .sorted(
+                        // same as (a, b) -> {logic...}
+                        // sort based on frequency, then alphabetically
+                        Comparator.comparing(WordFrequency::getFrequency, Comparator.reverseOrder())
+                                .thenComparing(WordFrequency::getWord)
+                )
+                .limit(n) // limit number n from map
+                .toList();
     }
 }
